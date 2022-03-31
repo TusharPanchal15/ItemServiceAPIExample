@@ -54,15 +54,20 @@ namespace ConsoleApp
 
                 authResponse.Close();
 
+                Console.WriteLine("Enter Item Name:");
+                string itemname = Console.ReadLine();
+                Console.WriteLine(Environment.NewLine);
+                
+
                 var emailObj = new ItemRequest
                 {
-                    ItemName = "Test APi 4",
+                    ItemName = itemname,
                     TemplateID = "{76036F5E-CBCE-46D1-AF0A-4143F9B557AA}",
                     Title = "Test API TITLE",
                     Text = "TEST API TEXT"
                 };
 
-                var url = $"{domainName}{itemAPI}{ItemLocation}";
+                var url = $"{domainName}{itemAPI}{ItemLocation}?sc_content=master";
 
                 var request = (HttpWebRequest)WebRequest.Create(url);
 
@@ -87,7 +92,6 @@ namespace ConsoleApp
             {
                 Console.WriteLine($"Error occurred. Message: {ex.Message}.\r\n StackTrace: {ex.StackTrace}.\r\n InnerException: {ex.InnerException}");
             }
-
             Console.ReadKey();
         }
     }
